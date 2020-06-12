@@ -1,0 +1,48 @@
+--- a/out/cctest.target.mk
++++ b/out/cctest.target.mk
+@@ -226,7 +226,8 @@
+ 
+ LIBS := \
+ 	-lm \
+-	-ldl
++	-ldl \
++	-lrt
+ 
+ $(builddir)/cctest: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
+ $(builddir)/cctest: LIBS := $(LIBS)
+--- a/out/mkcodecache.target.mk
++++ b/out/mkcodecache.target.mk
+@@ -226,7 +226,8 @@
+ 
+ LIBS := \
+ 	-lm \
+-	-ldl
++	-ldl \
++	-lrt
+ 
+ $(builddir)/mkcodecache: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
+ $(builddir)/mkcodecache: LIBS := $(LIBS)
+--- a/out/node_mksnapshot.target.mk
++++ b/out/node_mksnapshot.target.mk
+@@ -226,7 +226,8 @@
+ 
+ LIBS := \
+ 	-lm \
+-	-ldl
++	-ldl \
++	-lrt
+ 
+ $(builddir)/node_mksnapshot: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
+ $(builddir)/node_mksnapshot: LIBS := $(LIBS)
+--- a/out/node.target.mk
++++ b/out/node.target.mk
+@@ -226,7 +226,8 @@
+ 
+ LIBS := \
+ 	-lm \
+-	-ldl
++	-ldl \
++	-lrt
+ 
+ $(builddir)/node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
+ $(builddir)/node: LIBS := $(LIBS)
