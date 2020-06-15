@@ -8,3 +8,5 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
 git clone -b mpi-req https://github.com/rupertnash/cwltool.git
+wget https://github.com/rupertnash/galaxy/archive/dev.zip
+unzip dev.zip

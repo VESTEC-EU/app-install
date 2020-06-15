@@ -11,6 +11,14 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $cwl_install_dir/bin/activate
 
 pushd cwltool
-pip install .[deps]
+pip install .
+popd
+
+pushd galaxy/packages
+for pkg in util containers tool_util; do
+    pushd $pkg
+    python setup.py install
+    popd
+done
 
 popd
