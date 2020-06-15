@@ -4,8 +4,8 @@ if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
     return 1
 fi
 set -e
-
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
-for step in download configure build install module; do
-    $this_dir/$step.sh
-done
+. $thisdir/env.sh
+mkdir -p $mod_dir/proj
+
+cat $installer_proj_dir/modtemplate.tcl | envsubst > $mod_dir/proj/$proj_version

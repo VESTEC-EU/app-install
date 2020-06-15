@@ -4,8 +4,8 @@ if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
     return 1
 fi
 set -e
-
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
-for step in download configure build install module; do
-    $this_dir/$step.sh
-done
+. $thisdir/env.sh
+
+wget https://download.osgeo.org/proj/proj-$proj_version.tar.gz
+tar -xzf proj-$proj_version.tar.gz
