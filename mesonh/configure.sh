@@ -7,5 +7,8 @@ set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
-git clone -b mpi-req https://github.com/rupertnash/cwltool.git
-git clone https://github.com/rupertnash/galaxy.git
+pushd $mesonh_prefix/src
+if [ ! -f $conf_file ]; then
+    ./configure
+fi
+popd
