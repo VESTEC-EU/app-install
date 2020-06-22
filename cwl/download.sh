@@ -7,5 +7,5 @@ set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
-git clone -b mpi-req https://github.com/rupertnash/cwltool.git
+git clone https://github.com/common-workflow-language/cwltool.git
 git clone https://github.com/rupertnash/galaxy.git

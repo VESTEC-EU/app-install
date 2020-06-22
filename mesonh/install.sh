@@ -3,11 +3,12 @@ if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
     echo "Don't source me"
     return 1
 fi
-set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
 . $conf_file
+set -e
+set -x
 
 bin_dir=$mesonh_prefix/${ARCH}-${OPTLEVEL}
 mkdir -p $bin_dir

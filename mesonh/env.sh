@@ -5,6 +5,10 @@ if [ -z "$INSTALLER_MESONH_ENV_SH" ]; then
     . $installer_mesonh_dir/../env.sh
     export mesonh_version=5.4.2
 
+    # Open source, install world usable
+    export app_dir=$pub_app_dir
+    export mod_dir=$pub_mod_dir
+
     # We will put the source tree here and use Meso-NH's weird
     # conf/build/env system to manage the binaries
     export mesonh_prefix=$app_dir/mesonh/$mesonh_version

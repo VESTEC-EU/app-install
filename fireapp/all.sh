@@ -7,5 +7,5 @@ set -e
 
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 for step in download configure build install module; do
-    $this_dir/$step.sh
+    $thisdir/$step.sh
 done

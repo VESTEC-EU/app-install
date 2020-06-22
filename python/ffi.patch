@@ -1,0 +1,84 @@
+diff --git a/Makefile.pre.in b/Makefile.pre.in
+index 0d616d3044..5522926b91 100644
+--- a/Makefile.pre.in
++++ b/Makefile.pre.in
+@@ -292,6 +292,7 @@ IO_OBJS=	\
+ ##########################################################################
+ 
+ LIBFFI_INCLUDEDIR=	@LIBFFI_INCLUDEDIR@
++LIBFFI_LIBDIR=		@LIBFFI_LIBDIR@
+ 
+ ##########################################################################
+ # Parser
+diff --git a/configure b/configure
+index 26e9aa9fe4..ebaf4bf0e1 100755
+--- a/configure
++++ b/configure
+@@ -654,6 +654,7 @@ DFLAGS
+ DTRACE
+ TCLTK_LIBS
+ TCLTK_INCLUDES
++LIBFFI_LIBDIR
+ LIBFFI_INCLUDEDIR
+ PKG_CONFIG_LIBDIR
+ PKG_CONFIG_PATH
+@@ -10476,11 +10477,14 @@ fi
+ 
+ if test "$with_system_ffi" = "yes" && test -n "$PKG_CONFIG"; then
+     LIBFFI_INCLUDEDIR="`"$PKG_CONFIG" libffi --cflags-only-I 2>/dev/null | sed -e 's/^-I//;s/ *$//'`"
++    LIBFFI_LIBDIR="`"$PKG_CONFIG" libffi --libs-only-L 2>/dev/null | sed -e 's/^-L//;s/ *$//'`"
+ else
+     LIBFFI_INCLUDEDIR=""
++    LIBFFI_LIBDIR=""
+ fi
+ 
+ 
++
+ # Check for use of the system libmpdec library
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for --with-system-libmpdec" >&5
+ $as_echo_n "checking for --with-system-libmpdec... " >&6; }
+diff --git a/configure.ac b/configure.ac
+index acb6d4bfa8..3f68effee3 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -3036,10 +3036,13 @@ fi
+ 
+ if test "$with_system_ffi" = "yes" && test -n "$PKG_CONFIG"; then
+     LIBFFI_INCLUDEDIR="`"$PKG_CONFIG" libffi --cflags-only-I 2>/dev/null | sed -e 's/^-I//;s/ *$//'`"
++    LIBFFI_LIBDIR="`"$PKG_CONFIG" libffi --libs-only-L 2>/dev/null | sed -e 's/^-L//;s/ *$//'`"
+ else
+     LIBFFI_INCLUDEDIR=""
++    LIBFFI_LIBDIR=""
+ fi
+ AC_SUBST(LIBFFI_INCLUDEDIR)
++AC_SUBST(LIBFFI_LIBDIR)
+ 
+ # Check for use of the system libmpdec library
+ AC_MSG_CHECKING(for --with-system-libmpdec)
+diff --git a/setup.py b/setup.py
+index 878372154d..0cdc99bb75 100644
+--- a/setup.py
++++ b/setup.py
+@@ -2107,15 +2107,21 @@ class PyBuildExt(build_ext):
+                 ffi_inc = None
+                 print('Header file {} does not exist'.format(ffi_h))
+         ffi_lib = None
++        ffi_libdir = [sysconfig.get_config_var("LIBFFI_LIBDIR")]
++        ffi_libdir = [d for d in ffi_libdir if os.path.isdir(d)]
+         if ffi_inc is not None:
+             for lib_name in ('ffi', 'ffi_pic'):
+-                if (self.compiler.find_library_file(self.lib_dirs, lib_name)):
++                fullpath = self.compiler.find_library_file(self.lib_dirs + ffi_libdir, lib_name)
++                if fullpath:
+                     ffi_lib = lib_name
++                    ffi_libdir = os.path.normpath(os.path.dirname(fullpath))
+                     break
+ 
+         if ffi_inc and ffi_lib:
+             ext.include_dirs.extend(ffi_inc)
+             ext.libraries.append(ffi_lib)
++            if ffi_libdir not in self.lib_dirs:
++                ext.library_dirs.append(ffi_libdir)
+             self.use_system_libffi = True
+ 
+         if sysconfig.get_config_var('HAVE_LIBDL'):

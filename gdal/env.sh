@@ -3,6 +3,11 @@ if [ -z "$INSTALLER_GDAL_ENV_SH" ]; then
 
     export installer_gdal_dir=$(readlink -f $(dirname $BASH_SOURCE))
     . $installer_gdal_dir/../env.sh
+
+    # Open source, install world usable
+    export app_dir=$pub_app_dir
+    export mod_dir=$pub_mod_dir
+
     export gdal_version=3.1.0
     export gdal_prefix=$app_dir/gdal/$gdal_version
 

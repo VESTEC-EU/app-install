@@ -4,8 +4,12 @@ if [ -z "$INSTALLER_CWL_ENV_SH" ]; then
     export installer_cwl_dir=$(readlink -f $(dirname $BASH_SOURCE))
     . $installer_cwl_dir/../env.sh
 
-    export cwl_version=mpi-req
+    # Open source, install world usable
+    export app_dir=$pub_app_dir
+    export mod_dir=$pub_mod_dir
+
+    export cwl_version=master
     export cwl_install_dir=$app_dir/cwl/$cwl_version
 
-    module load python-compute/3.6.0_gcc6.1.0
+    module load python/3.8.3
 fi
