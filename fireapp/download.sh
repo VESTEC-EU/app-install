@@ -7,4 +7,10 @@ set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
-git clone -b tidy https://git.firesponse.es/external/vestec.git fireapp
+if [ -d fireapp ]; then
+    pushd fireapp
+    git pull --all --ff-only origin $fireapp_version
+    popd
+else
+    git clone -b $fireapp_version https://git.firesponse.es/external/vestec.git fireapp
+fi

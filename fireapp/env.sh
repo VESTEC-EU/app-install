@@ -3,7 +3,12 @@ if [ -z "$INSTALLER_FIREAPP_ENV_SH" ]; then
 
     export installer_fireapp_dir=$(readlink -f $(dirname $BASH_SOURCE))
     . $installer_fireapp_dir/../env.sh
-    export fireapp_version=tidy
+
+    # Closed source, keep VESTEC only
+    export app_dir=$priv_app_dir
+    export mod_dir=$priv_mod_dir
+
+    export fireapp_version=separate-TUs
     export fireapp_prefix=$app_dir/fireapp/$fireapp_version
 
     module swap PrgEnv-cray PrgEnv-gnu
