@@ -8,7 +8,7 @@ if [ -z "$INSTALLER_FIREAPP_ENV_SH" ]; then
     export app_dir=$priv_app_dir
     export mod_dir=$priv_mod_dir
 
-    export fireapp_version=separate-TUs
+    export fireapp_version=develop
     export fireapp_prefix=$app_dir/fireapp/$fireapp_version
 
     module swap PrgEnv-cray PrgEnv-gnu
@@ -20,4 +20,5 @@ if [ -z "$INSTALLER_FIREAPP_ENV_SH" ]; then
     export gdal_version=3.1.0
     module load gdal/$gdal_version
     export CRAYPE_LINK_TYPE=dynamic
+    module load conan
 fi
