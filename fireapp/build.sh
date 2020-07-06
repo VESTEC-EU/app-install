@@ -8,5 +8,5 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
 pushd build-$fireapp_version
-make
+make -j 8
 popd

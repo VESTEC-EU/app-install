@@ -9,4 +9,10 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 
 pushd build-$fireapp_version
 make install
+
+# CMake RPATH handling is going wrong
+for exe in WildFire; do
+    cp bin/$exe $fireapp_prefix/bin/
+done
+
 popd
