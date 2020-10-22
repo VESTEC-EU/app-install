@@ -19,8 +19,11 @@ cmake -DSUPERBUILD_PROJECT_PARALLELISM=8 \
       -DENABLE_paraviewweb=ON \
       -DENABLE_osmesa=ON \
       -Dmesa_USE_SWR=OFF \
+      -DPARAVIEW_USE_MPI=On \
+      -DENABLE_mpi=On \
       -DENABLE_ospray=ON \
-      -DCMAKE_INSTALL_PREFIX=/home/d170/shared/sw/paraview/5.8.1-RC1 \
+      -DUSE_SYSTEM_MPI=On \
+      -DCMAKE_INSTALL_PREFIX=/home/d170/d170/flatken/paraview-5.8.1 \
       -DCMAKE_INSTALL_RPATH="\$ORIGIN" \
       ../paraview-source
 
