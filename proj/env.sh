@@ -8,11 +8,13 @@ if [ -z "$INSTALLER_PROJ_ENV_SH" ]; then
     export app_dir=$pub_app_dir
     export mod_dir=$pub_mod_dir
 
-    export proj_version=6.2.1
-    export proj_prefix=$app_dir/proj/$proj_version
+    export name=proj
+    export version=6.2.1
+    export prefix=$app_dir/$name/$version
 
-    module swap PrgEnv-cray PrgEnv-gnu
-    module swap gcc gcc/7.3.0
-    module load cmake/3.16.0
-    export CRAYPE_LINK_TYPE=dynamic
+    source_dir_name=proj-$version
+    build_dir_name=build-$version
+
+    module load gcc gcc/6.3.0
+    module load cmake/3.17.3
 fi

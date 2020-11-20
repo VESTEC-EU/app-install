@@ -4,8 +4,9 @@ if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
     return 1
 fi
 set -e
+
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
-wget https://download.osgeo.org/proj/proj-$version.tar.gz
-tar -xzf proj-$version.tar.gz
+pushd $build_dir_name
+cmake --build . -j $make_parallelism
