@@ -1,0 +1,1 @@
+../generic/cmake/build.sh
