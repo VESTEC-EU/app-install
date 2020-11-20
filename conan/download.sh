@@ -1,2 +1,1 @@
-#!/bin/bash
-# Nothing required
+../generic/pip/download.sh
