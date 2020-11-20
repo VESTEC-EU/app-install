@@ -9,9 +9,13 @@ if [ -z "$INSTALLER_NODEJS_ENV_SH" ]; then
     export mod_dir=$pub_mod_dir
 
     export nodejs_version=12.16.1
-    export nodejs_prefix=$app_dir/nodejs/$nodejs_version
+    export prefix=$app_dir/nodejs/$nodejs_version
+    export source_dir_name=node-v$nodejs_version
 
-    module swap PrgEnv-cray PrgEnv-gnu
-    module load python-compute/2.7.6
-    module swap gcc gcc/7.3.0
+    module load python
+    module load gcc/6.3.0
+    module load openssl
+
+    export CC=gcc
+    export configure_other_args="--shared-openssl"
 fi
