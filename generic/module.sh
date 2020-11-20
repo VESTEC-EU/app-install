@@ -10,3 +10,5 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 mkdir -p $mod_dir/$name
 
 cat $thisdir/modtemplate.tcl | envsubst > $mod_dir/$name/$version
+
+chmod -R g+w $mod_dir/$name

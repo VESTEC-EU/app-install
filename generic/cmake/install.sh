@@ -10,3 +10,4 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 pushd $build_dir_name
 make install
 popd
+chmod -R g+w $prefix
