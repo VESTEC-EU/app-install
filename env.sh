@@ -3,12 +3,12 @@ if [ -z "$INSTALLER_ENV_SH" ]; then
 
     installer_dir=$(readlink -f $(dirname $BASH_SOURCE))
 
-    export vestec=d170
-    export pub_app_dir=/home/$vestec/shared/sw
-    export pub_mod_dir=/home/$vestec/shared/modules
+    export vestec=dc118
+    export pub_app_dir=/lustre/home/shared/$vestec/sw
+    export pub_mod_dir=/lustre/home/shared/$vestec/modules
     module use $pub_mod_dir
 
-    export priv_app_dir=/home/$vestec/$vestec/shared/sw
-    export priv_mod_dir=/home/$vestec/$vestec/shared/modules
+    export priv_app_dir=/lustre/home/$vestec/shared/sw
+    export priv_mod_dir=/lustre/home/$vestec/shared/modules
     module use $priv_mod_dir
 fi
