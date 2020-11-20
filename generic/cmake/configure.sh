@@ -20,7 +20,7 @@ vars[CMAKE_BUILD_TYPE]=Release
 
 # Copy in any new ones from `cmake_vars` associative array
 for vname in "${!cmake_vars[@]}"; do
-    vars[vname]=${cmake_vars[$vname]}
+    vars[$vname]=${cmake_vars[$vname]}
 done
 
 # Build command line
