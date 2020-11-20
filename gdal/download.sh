@@ -7,5 +7,5 @@ set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
-wget https://github.com/OSGeo/gdal/releases/download/v$gdal_version/gdal-$gdal_version.tar.gz
-tar -xzf gdal-$gdal_version.tar.gz
+wget https://github.com/OSGeo/gdal/releases/download/v$version/gdal-$version.tar.gz
+tar -xzf gdal-$version.tar.gz

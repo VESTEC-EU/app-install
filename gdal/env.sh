@@ -8,14 +8,17 @@ if [ -z "$INSTALLER_GDAL_ENV_SH" ]; then
     export app_dir=$pub_app_dir
     export mod_dir=$pub_mod_dir
 
-    export gdal_version=3.1.0
-    export gdal_prefix=$app_dir/gdal/$gdal_version
+    export name=gdal
+    export version=3.1.0
+    export prefix=$app_dir/$name/$version
 
-    module swap PrgEnv-cray PrgEnv-gnu
-    module swap gcc gcc/7.3.0
-    module load cmake/3.16.0
-    export proj_version=6.2.1
-    module load proj/$proj_version
-    module load cray-hdf5/1.10.0.1
-    export CRAYPE_LINK_TYPE=dynamic
+    source_dir_name=gdal-$version
+
+    module load gcc/6.3.0
+    module load cmake/3.17.3
+    module load proj/6.2.1
+    module load hdf5/1.10.7
+
+    configure_other_args="--with-proj=$PROJ_DIR --with-pg=no --with-webp=no --with-crypto=no --with-curl=no --with-hdf5=$HDF5_DIR --with-jasper=no"
+    #LDFLAGS=-Wl,-rpath=$PROJ_DIR/lib
 fi
