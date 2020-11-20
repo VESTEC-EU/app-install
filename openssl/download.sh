@@ -5,8 +5,7 @@ if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
 fi
 set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
-
 . $thisdir/env.sh
-cd $build_dir_name
 
-make -j 16
+wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1d.tar.gz
+tar -xzf OpenSSL_1_1_1d.tar.gz

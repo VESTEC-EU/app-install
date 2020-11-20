@@ -1,0 +1,1 @@
+../generic/autotools/install.sh

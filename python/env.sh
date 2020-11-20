@@ -8,10 +8,15 @@ if [ -z "$INSTALLER_PYTHON_ENV_SH" ]; then
     export app_dir=$pub_app_dir
     export mod_dir=$pub_mod_dir
 
-    export python_version=3.8.3
-    export python_prefix=$app_dir/python/$python_version
+    export name=python
+    export version=3.8.5
+    export prefix=$app_dir/$name/$version
 
-    module swap PrgEnv-cray PrgEnv-gnu
+    source_dir_name=Python-$version
+    build_dir_name=pybuild
+
     module load gcc/6.3.0
-    module load libffi
+    module load zlib/1.2.11
+    module load libffi/3.3
+    module load openssl/1.1.1d
 fi

@@ -7,10 +7,11 @@ set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
-python_build=pyenv/plugins/python-build/bin/python-build
+pushd $build_dir_name
+make install
+popd
 
-TMPDIR=$PWD MAKEOPTS="-j 2" $python_build -k -p $python_version $python_prefix < $thisdir/ffi.patch
+pushd $prefix/bin
 
-$python_prefix/bin/pip3 install --upgrade pip
-
-chmod -R a-w $python_prefix
+./pip3 install --upgrade pip
+ln -s python3 python

@@ -59,7 +59,40 @@ diff --git a/setup.py b/setup.py
 index 878372154d..0cdc99bb75 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -2107,15 +2107,21 @@ class PyBuildExt(build_ext):
+@@ -1496,7 +1496,23 @@
+         #
+         # You can upgrade zlib to version 1.1.4 yourself by going to
+         # http://www.gzip.org/zlib/
++
+         zlib_inc = find_file('zlib.h', [], self.inc_dirs)
++        if zlib_inc is None:
++            tmpfile = os.path.join(self.build_temp, 'zlib.prefix')
++            ret = os.system("pkg-config --variable=prefix zlib 2> /dev/null > %s" % tmpfile)
++            if ret >> 8 == 0:
++                with open(tmpfile) as f:
++                    zlib_prefix = f.read().strip()
++                zlib_inc_dirs = [os.path.join(zlib_prefix, "include")]
++                self.inc_dirs.extend(zlib_inc_dirs)
++                zlib_lib_dirs = [os.path.join(zlib_prefix, "lib")]
++                self.lib_dirs.extend(zlib_lib_dirs)
++                zlib_inc = find_file('zlib.h', [], self.inc_dirs)
++        else:
++            zlib_inc_dirs = None
++            zlib_lib_dirs = None
++
+         have_zlib = False
+         if zlib_inc is not None:
+             zlib_h = zlib_inc[0] + '/zlib.h'
+@@ -1519,6 +1535,8 @@
+                     else:
+                         zlib_extra_link_args = ()
+                     self.add(Extension('zlib', ['zlibmodule.c'],
++                                       include_dirs=zlib_inc_dirs,
++                                       library_dirs=zlib_lib_dirs,
+                                        libraries=['z'],
+                                        extra_link_args=zlib_extra_link_args))
+                     have_zlib = True
+@@ -2056,15 +2074,21 @@ class PyBuildExt(build_ext):
                  ffi_inc = None
                  print('Header file {} does not exist'.format(ffi_h))
          ffi_lib = None

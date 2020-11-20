@@ -5,8 +5,8 @@ if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
 fi
 set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
-
 . $thisdir/env.sh
-cd $build_dir_name
 
-make -j 16
+pushd $source_dir_name
+./config --prefix=$prefix --openssldir=$prefix
+
