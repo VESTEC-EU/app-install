@@ -1,1 +1,1 @@
-../generic/cmake/install.sh
+../generic/autotools/install.sh

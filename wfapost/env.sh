@@ -8,11 +8,12 @@ if [ -z "$INSTALLER_WFAPOST_ENV_SH" ]; then
     export app_dir=$priv_app_dir
     export mod_dir=$priv_mod_dir
 
-    export wfapost_version=main
-    export wfapost_install_dir=$app_dir/wfapost/$wfapost_version
+    export name=wfapost
+    export version=main
+    export prefix=$app_dir/$name/$version
 
     wfapost_gdal_version=3.1.0
 
-    module load python/3.8.3
+    module load python/3.8.5
     module load gdal/$wfapost_gdal_version
 fi
