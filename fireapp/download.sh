@@ -9,8 +9,8 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 
 if [ -d fireapp ]; then
     pushd fireapp
-    git pull --all --ff-only origin $fireapp_version
+    git pull --all --ff-only origin $version
     popd
 else
-    git clone -b $fireapp_version https://git.firesponse.es/external/vestec.git fireapp
+    git clone -b $version https://git.firesponse.es/external/vestec.git fireapp
 fi

@@ -8,17 +8,24 @@ if [ -z "$INSTALLER_FIREAPP_ENV_SH" ]; then
     export app_dir=$priv_app_dir
     export mod_dir=$priv_mod_dir
 
-    export fireapp_version=develop
-    export fireapp_prefix=$app_dir/fireapp/$fireapp_version
+    export name=fireapp
+    export version=Catalyst
+    export prefix=$app_dir/$name/$version
 
-    module swap PrgEnv-cray PrgEnv-gnu
-    module swap gcc gcc/7.3.0
-    module load cmake/3.16.0
-    module load cray-hdf5/1.10.0.1
-    unset HDF5_ROOT
-    module load cray-netcdf/4.4.1.1
-    export gdal_version=3.1.0
-    module load gdal/$gdal_version
-    export CRAYPE_LINK_TYPE=dynamic
-    module load conan
+    module load gcc/6.3.0
+    module load cmake/3.17.3
+    #module load hdf5/1.10.7
+    module load netcdf/4.7.4
+    module load gdal/3.1.0
+    module load conan/1.31.3
+    module load mpt/2.22
+
+    source_dir_name=fireapp
+    build_dir_name=build-$version
+
+    declare -A cmake_vars
+    cmake_vars[BUILD_SHARED_LIBS]=ON
+    cmake_vars[FIREAPP_CONAN]=ON
+    cmake_vars[FIREAPP_CONAN_GDAL]=OFF
+    cmake_vars[CONAN_CMD]=$CONAN_DIR/bin/conan
 fi
