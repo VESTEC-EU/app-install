@@ -13,18 +13,18 @@ if [ -z "$INSTALLER_MESONH_ENV_SH" ]; then
     # conf/build/env system to manage the binaries
     export mesonh_prefix=$app_dir/mesonh/$mesonh_version
 
-    module load cdt/18.12
-    module swap PrgEnv-cray PrgEnv-intel
-    module load cray-hdf5/1.10.2.0
-    module load ncl/6.4.0
+    module load mpt
+    module load intel-compilers-19
+    module load hdf5parallel/1.10.6-intel19-mpt222
+    module load ncl
+    module load gcc
 
-    export VER_MPI=MPICRAY
+    export VER_MPI=MPIAUTO
     export ARCH=LXifort
     export OPTLEVEL=O2
     export CC=gcc
     export CXX=g++
-    export VERSION_NCL=6.4.0
+    export VERSION_NCL=6.6.2
     export NEED_NCARG=NO
     conf_file=$mesonh_prefix/conf/profile_mesonh-${ARCH}-R8I4-MNH-V5-4-2-${VER_MPI}-${OPTLEVEL}
-
 fi

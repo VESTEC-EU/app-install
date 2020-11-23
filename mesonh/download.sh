@@ -12,7 +12,6 @@ if [ ! -d $mesonh_prefix ]; then
 	wget http://mesonh.aero.obs-mip.fr/mesonh/dir_open/dir_MESONH/MNH-V5-4-2.tar.gz
     fi
     mkdir -p $app_dir/mesonh
-    cd $app_dir/mesonh
     tar -xzf MNH-V5-4-2.tar.gz
-    mv MNH-V5-4-2 5.4.2
+    mv MNH-V5-4-2 $app_dir/mesonh/5.4.2
 fi
