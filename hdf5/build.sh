@@ -1,1 +1,1 @@
-../generic/cmake/build.sh
+../generic/autotools/build.sh

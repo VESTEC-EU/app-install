@@ -1,1 +1,1 @@
-../generic/cmake/configure.sh
+../generic/autotools/configure.sh

@@ -16,7 +16,7 @@ if [ -z "$INSTALLER_NETCDF_ENV_SH" ]; then
     module load gcc/6.3.0
     module load zlib/1.2.11
     module load hdf5/1.10.7
-
-    module load cmake/3.17.3
-    declare -A cmake_vars
+    export CFLAGS=-I${HDF5_DIR}/include
+    export LDFLAGS=-L${HDF5_DIR}/lib
+    #configure_other_args="--enable-hdf5=$HDF5_DIR"
 fi

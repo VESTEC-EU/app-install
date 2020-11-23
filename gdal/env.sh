@@ -19,6 +19,5 @@ if [ -z "$INSTALLER_GDAL_ENV_SH" ]; then
     module load proj/6.2.1
     module load hdf5/1.10.7
 
-    configure_other_args="--with-proj=$PROJ_DIR --with-pg=no --with-webp=no --with-crypto=no --with-curl=no --with-hdf5=$HDF5_DIR --with-jasper=no"
-    #LDFLAGS=-Wl,-rpath=$PROJ_DIR/lib
+    configure_other_args="--with-proj=$PROJ_DIR --with-pg=no --with-webp=no --with-crypto=no --with-curl=no --with-hdf5=$HDF5_DIR --with-jasper=no LDFLAGS=-Wl,-rpath=$PROJ_DIR/lib64"
 fi

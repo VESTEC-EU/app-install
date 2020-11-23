@@ -14,11 +14,7 @@ if [ -z "$INSTALLER_HDF5_ENV_SH" ]; then
     export build_dir_name=build-$version
 
     module load gcc/6.3.0
-    module load cmake/3.17.3
     module load zlib/1.2.11
 
-    declare -A cmake_vars
-    cmake_vars[BUILD_TESTING]=OFF
-    cmake_vars[HDF5_BUILD_EXAMPLES]=OFF
-    cmake_vars[HDF5_ENABLE_Z_LIB_SUPPORT]=ON
+    configure_other_args="--disable-tests --with-zlib=$(pkg-config --variable=prefix zlib)"
 fi
