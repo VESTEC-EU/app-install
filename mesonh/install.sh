@@ -18,4 +18,5 @@ prog_list="MESONH LATLON_TO_XY PREP_IDEAL_CASE PREP_REAL_CASE PREP_PGD PREP_NEST
 for prog in $prog_list; do
     ln -s $mesonh_prefix/src/dir_obj$XYZ/MASTER/$prog
 done
+chmod -R g+w $mesonh_prefix
 popd

@@ -9,3 +9,4 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 mkdir -p $mod_dir/mesonh
 
 cat $installer_mesonh_dir/modtemplate.tcl | envsubst > $mod_dir/mesonh/$mesonh_version-${ARCH}-${OPTLEVEL}
+chmod -R g+w $mod_dir/mesonh
