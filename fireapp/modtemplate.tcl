@@ -1,5 +1,5 @@
 #%Module
 module-whatis "Wildfire Analyst VESTEC app"
 
-setenv FIREAPP_DIR "${fireapp_prefix}"
-prepend-path PATH "${fireapp_prefix}/bin"
+setenv FIREAPP_DIR "${prefix}"
+prepend-path PATH "${prefix}/bin"
