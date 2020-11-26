@@ -10,6 +10,10 @@ if [ ! -d paraview-source ]; then
   cd ..
 fi
 
+if [ ! -d paraview-build ]; then
+  mkdir paraview-build
+fi
+
 cd paraview-build
 cmake -DSUPERBUILD_PROJECT_PARALLELISM=8 \
       -DPARAVIEW_BUILD_EDITION=CATALYST_RENDERING \
@@ -23,7 +27,7 @@ cmake -DSUPERBUILD_PROJECT_PARALLELISM=8 \
       -DENABLE_mpi=On \
       -DENABLE_ospray=ON \
       -DUSE_SYSTEM_MPI=On \
-      -DCMAKE_INSTALL_PREFIX=/home/d170/d170/flatken/paraview-5.8.1 \
+      -DCMAKE_INSTALL_PREFIX=../install/paraview-5.8.1 \
       -DCMAKE_INSTALL_RPATH="\$ORIGIN" \
       ../paraview-source
 

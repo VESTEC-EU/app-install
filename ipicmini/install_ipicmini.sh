@@ -1,5 +1,7 @@
 #!/bin/bash
 
+root=$PWD
+
 # Build TTK
 if [ ! -d ipicmini-source ]; then
   git clone https://github.com/pierre-guillou/ipicmini.git ipicmini-source
@@ -9,18 +11,22 @@ if [ ! -d ipicmini-source ]; then
   cd ..
 fi
 
+if [ ! -d ipicmini-build ]; then
+  mkdir ipicmini-build
+fi
+
 cd ipicmini-build
-cmake -DParaView_DIR=/home/d170/d170/flatken/paraview-build/install/lib/cmake/paraview-5.8\
+cmake -DParaView_DIR=$root/paraview-build/install/lib/cmake/paraview-5.8\
       -DUSE_CATALYST=ON \
       -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_INSTALL_PREFIX=/home/d170/d170/flatken/ipicmini/ \
-      ../ipicmini-source/src
+      -DCMAKE_INSTALL_PREFIX=$root/install/ipicmini/ \
+      $root/ipicmini-source/src
 
 make -j8
 
-mkdir /work/d170/d170/flatken/ipicmini/
-mkdir /work/d170/d170/flatken/ipicmini/bin
-mkdir /work/d170/d170/flatken/ipicmini/lib
-cp iPICmini /work/d170/d170/flatken/ipicmini/bin
-cp lib* /work/d170/d170/flatken/ipicmini/lib
+mkdir $root/install/ipicmini/
+mkdir $root/install/ipicmini/bin
+mkdir $root/install/ipicmini/lib
+cp iPICmini $root/install/ipicmini/bin
+cp lib* $root/install/ipicmini/lib
 

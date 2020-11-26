@@ -1,5 +1,7 @@
 #!/bin/bash
 
+root=$PWD
+
 # Build TTK
 if [ ! -d ttk-source ]; then
   git clone https://github.com/topology-tool-kit/ttk.git ttk-source
@@ -11,15 +13,20 @@ if [ ! -d ttk-source ]; then
   cd ..
 fi
 
+# This is useful in case you remove the build folder.. but don't want to restart completely from scratch
+if [ ! -d ttk-build ]; then  
+  mkdir ttk-build
+fi
+
 cd ttk-build
-cmake -DParaView_DIR=/home/d170/d170/flatken/paraview-build/install/lib/cmake/paraview-5.8\
+cmake -DParaView_DIR=$root/paraview-build/install/lib/cmake/paraview-5.8\
       -DTTK_ENABLE_KAMIKAZE=ON \
-      -DTTK_INSTALL_PLUGIN_DIR=/home/d170/d170/flatken/paraview-5.8.1/lib/paraview-5.8/plugins \
+      -DTTK_INSTALL_PLUGIN_DIR=$root/install/paraview-5.8.1/lib/paraview-5.8/plugins \
       -DTTK_BUILD_STANDALONE_APPS=OFF \
       -DVTK_MODULE_ENABLE_ttkCinemaImaging=DONT_WANT \
       -DVTK_MODULE_ENABLE_ttkUserInterfaceBase=DONT_WANT \
-      -DCMAKE_INSTALL_PREFIX=/home/d170/d170/flatken/ttk/ \
-      ../ttk-source
+      -DCMAKE_INSTALL_PREFIX=$root/install/ttk/ \
+      $root/ttk-source
 
 make -j8
 make install
