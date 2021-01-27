@@ -1,1 +1,0 @@
-../generic/all.sh

@@ -1,1 +1,0 @@
-../generic/pip/configure.sh

@@ -1,1 +1,0 @@
-../generic/pip/download.sh
