@@ -3,7 +3,10 @@ if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
     echo "Don't source me"
     return 1
 fi
-set -e
+
+# Export var assignments for envsubst (before reading env and config)
+set -a
+
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
