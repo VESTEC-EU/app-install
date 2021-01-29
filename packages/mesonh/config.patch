@@ -1,0 +1,13 @@
+--- a/conf/profile_mesonh.ihm	2021-01-29 11:36:01.512097000 +0000
++++ b/conf/profile_mesonh.ihm	2021-01-29 11:36:17.159081000 +0000
+@@ -154,7 +154,9 @@
+ #
+ # Variable depending on \$ARCH 
+ #
+-[ -f \${SRC_MESONH}/conf/conf_\${ARCH} ] && . \${SRC_MESONH}/conf/conf_\${ARCH}
++if [ -f \${SRC_MESONH}/conf/conf_\${ARCH} ]; then
++    . \${SRC_MESONH}/conf/conf_\${ARCH}
++fi
+ 
+ #
+ # Optional Environnement variable/Module  Env

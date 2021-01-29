@@ -13,7 +13,14 @@ if [ -z "$INSTALLER_ENV_SH" ]; then
     if [ -f $installer_dir/config.sh ]; then
 	. $installer_dir/config.sh
 	# Check for required variables
-	for varname in platform pub_app_dir pub_mod_dir priv_app_dir priv_mod_dir;  do
+	varnames=(platform)
+	for vis in pub priv; do
+	    for x in app mod data; do
+		varnames+=("${vis}_${x}_dir")
+	    done
+	done
+
+	for varname in ${varnames[@]};  do
 	    if [ -z "${!varname}" ]; then
 		echo "config.sh does not define required variable $varname"
 		exit 1
@@ -67,10 +74,12 @@ if [ -z "$INSTALLER_ENV_SH" ]; then
 	    pub|public)
 		app_dir=$pub_app_dir
 		mod_dir=$pub_mod_dir
+		data_dir=$pub_data_dir
 		;;
 	    priv|private)
 		app_dir=$priv_app_dir
 		mod_dir=$priv_mod_dir
+		data_dir=$priv_data_dir
 		;;
 	    *)
 		echo "Unknown package visibility: $visibility"

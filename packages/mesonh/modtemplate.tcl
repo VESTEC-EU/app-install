@@ -1,6 +1,6 @@
 #%Module
-module-whatis "Meso-NH weather code v5.4.2"
+module-whatis "Meso-NH weather code v$version"
 
-setenv MESONH_DIR "${mesonh_prefix}"
-prepend-path PATH "${mesonh_prefix}/${ARCH}-${OPTLEVEL}"
-setenv MESONH_DATA_DIR "/work/d170/shared/data/mesonh"
+setenv MESONH_DIR "${prefix}"
+prepend-path PATH "${prefix}/${ARCH}-${OPTLEVEL}"
+setenv MESONH_DATA_DIR "${pub_data_dir}/mesonh"
