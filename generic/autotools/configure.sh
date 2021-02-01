@@ -15,3 +15,4 @@ pushd $source_dir_name
 
 ./configure --prefix=$prefix $configure_other_args
 
+popd
