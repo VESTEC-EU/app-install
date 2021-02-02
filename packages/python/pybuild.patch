@@ -59,6 +59,36 @@ diff --git a/setup.py b/setup.py
 index 878372154d..0cdc99bb75 100644
 --- a/setup.py
 +++ b/setup.py
+@@ -4,6 +4,7 @@
+ import importlib._bootstrap
+ import importlib.machinery
+ import importlib.util
++import itertools
+ import os
+ import re
+ import sys
+@@ -1350,13 +1351,14 @@
+         # We hunt for #define SQLITE_VERSION "n.n.n"
+         # We need to find >= sqlite version 3.3.9, for sqlite3_prepare_v2
+         sqlite_incdir = sqlite_libdir = None
+-        sqlite_inc_paths = [ '/usr/include',
+-                             '/usr/include/sqlite',
+-                             '/usr/include/sqlite3',
+-                             '/usr/local/include',
+-                             '/usr/local/include/sqlite',
+-                             '/usr/local/include/sqlite3',
+-                             ]
++
++        prefixes = ['/usr', '/usr/local']
++        suffixes = [None, 'sqlite', 'sqlite3']
++        if os.environ.get('SQLITE_DIR', None):
++            prefixes.append(os.environ['SQLITE_DIR'])
++
++        sqlite_inc_paths = [os.path.join(p, 'include', s) if s else os.path.join(p, 'include')
++                                for (p,s) in itertools.product(prefixes, suffixes)]
+         if CROSS_COMPILING:
+             sqlite_inc_paths = []
+         MIN_SQLITE_VERSION_NUMBER = (3, 7, 2)
 @@ -1496,7 +1496,23 @@
          #
          # You can upgrade zlib to version 1.1.4 yourself by going to

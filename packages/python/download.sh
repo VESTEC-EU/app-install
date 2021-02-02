@@ -6,10 +6,15 @@ fi
 set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 
+. $thisdir/env.sh
 # OpenSSL module breaks system wget
-#. $thisdir/env.sh
+if module is-loaded openssl; then
+    module unload openssl
+fi
 
-wget https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tar.xz
-tar -xJf Python-3.8.5.tar.xz
-cd Python-3.8.5
+if [ ! -f Python-$version.tar.xz ]; then
+    wget https://www.python.org/ftp/python/$version/Python-$version.tar.xz
+fi
+tar -xJf Python-$version.tar.xz
+cd Python-$version
 patch -z .orig -p1 < $thisdir/pybuild.patch
