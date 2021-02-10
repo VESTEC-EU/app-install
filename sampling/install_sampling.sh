@@ -7,7 +7,7 @@ if [ ! -d sampling-source ]; then
   git clone https://github.com/Flatken/vestec-sampling.git sampling-source
   mkdir sampling-build
   cd sampling-source
-  git checkout feature/paraview-5.8
+  git checkout feature/robustness
   cd ..
 fi
 
