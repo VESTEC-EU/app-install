@@ -7,5 +7,9 @@ fi
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
-wget https://download.osgeo.org/proj/proj-$version.tar.gz
-tar -xzf proj-$version.tar.gz
+if [ ! -d proj-$version ]; then
+    if [ ! -f proj-$version.tar.gz ]; then
+	wget https://download.osgeo.org/proj/proj-$version.tar.gz
+    fi
+    tar -xzf proj-$version.tar.gz
+fi

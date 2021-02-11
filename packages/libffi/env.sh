@@ -10,4 +10,6 @@ if [ -z "$INSTALLER_LIBFFI_ENV_SH" ]; then
     source_dir_name=libffi-3.3
 
     installer_init
+
+    configure_other_args=""
 fi

@@ -1,2 +1,4 @@
 #!/bin/bash
-git clone git@github.com:VESTEC-EU/wfapost.git
+if [ ! -d wfapost ]; then
+    git clone git@github.com:VESTEC-EU/wfapost.git
+fi

@@ -6,5 +6,7 @@ fi
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
-wget https://github.com/OSGeo/gdal/releases/download/v$version/gdal-$version.tar.gz
+if [ ! -f gdal-$version.tar.gz ]; then
+    wget https://github.com/OSGeo/gdal/releases/download/v$version/gdal-$version.tar.gz
+fi
 tar -xzf gdal-$version.tar.gz
