@@ -4,12 +4,12 @@ platform=archer2
 
 vestec=d170
 
-pub_app_dir=/home/$vestec/shared/sw
-pub_mod_dir=/home/$vestec/shared/modules
+pub_app_dir=/work/$vestec/shared/sw
+pub_mod_dir=/work/$vestec/shared/modules
 pub_data_dir=/work/$vestec/shared/data
 
-priv_app_dir=/home/$vestec/$vestec/shared/sw
-priv_mod_dir=/home/$vestec/$vestec/shared/modules
+priv_app_dir=/work/$vestec/$vestec/shared/sw
+priv_mod_dir=/work/$vestec/$vestec/shared/modules
 priv_data_dir=/work/$vestec/$vestec/shared/data
 
 make_parallelism=16
