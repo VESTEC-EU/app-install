@@ -4,7 +4,7 @@ if [ -z "$INSTALLER_MESONH_ENV_SH" ]; then
     . $installer_mesonh_dir/../../env.sh
 
     name=mesonh
-    version=5.4.2
+    version=5.4.4
     visibility=public
 
     version_dashed=${version//./-}
