@@ -19,4 +19,8 @@ pip3 install --global-option=build_ext --global-option=-R$GDAL_DIR/lib GDAL==$wf
 pushd wfapost
 pip3 install -r requirements.txt .
 
+# Ensure that if this is the first version installed, others can also
+# write the package dir
+chmod g+w $app_dir/$name
+# Then the same, recursively, for the whole prefix tree
 chmod -R g+w $prefix

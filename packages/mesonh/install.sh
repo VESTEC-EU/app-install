@@ -16,5 +16,10 @@ prog_list="MESONH LATLON_TO_XY PREP_IDEAL_CASE PREP_REAL_CASE PREP_PGD PREP_NEST
 for prog in $prog_list; do
     ln -s $prefix/src/dir_obj$XYZ/MASTER/$prog
 done
+
+# Ensure that if this is the first version installed, others can also
+# write the package dir
+chmod g+w $app_dir/$name
+# Then the same, recursively, for the whole prefix tree
 chmod -R g+w $prefix
 popd

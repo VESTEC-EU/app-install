@@ -10,4 +10,9 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 pushd $build_dir_name
 make install
 popd
+
+# Ensure that if this is the first version installed, others can also
+# write the package dir
+chmod g+w $app_dir/$name
+# Then the same, recursively, for the whole prefix tree
 chmod -R g+w $prefix
