@@ -2,6 +2,7 @@
 module-whatis "Python"
 
 conflict cray-python
+conflict conda
 
 if {![is-loaded libffi]} {
     module load libffi/3.3
