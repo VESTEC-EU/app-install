@@ -16,5 +16,6 @@ if [ ! -d $prefix ]; then
     mv MNH-V${version_dashed} $app_dir/mesonh/$version
     pushd $prefix
     patch -p1 < $thisdir/config.patch
+    patch -p1 < $thisdir/gfortran-rules.patch
     popd
 fi

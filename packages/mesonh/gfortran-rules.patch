@@ -1,0 +1,16 @@
+--- a/src/Rules.LXgfortran.mk	2020-12-17 13:11:09.000000000 +0000
++++ b/src/Rules.LXgfortran.mk	2021-02-16 16:07:24.289873000 +0000
+@@ -64,8 +64,13 @@
+ F90 = mpif90
+ CPPFLAGS_SURCOUCHE += -DMNH_USE_MPI_STATUSES_IGNORE
+ else         
++ifeq "$(VER_MPI)" "MPICRAY"
++CPPFLAGS_SURCOUCHE += -DMNH_USE_MPI_STATUSES_IGNORE
++F90 = ftn
++else
+ F90 = gfortran
+ endif
++endif
+ #
+ F90FLAGS      =  $(OPT) 
+ F77 = $(F90)
