@@ -17,5 +17,10 @@ if [ ! -d $prefix ]; then
     pushd $prefix
     patch -p1 < $thisdir/config.patch
     patch -p1 < $thisdir/gfortran-rules.patch
+
+    # if version less than or equal to 5.4.4
+    if [ $(printf '%s\n' 5.4.4 "$version" | sort -V | head -n1) = "$version" ]; then
+	patch -p1 < $thisdir/uninitialised-bug-5.4.4.patch
+    fi
     popd
 fi

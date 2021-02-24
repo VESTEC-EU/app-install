@@ -1,0 +1,22 @@
+--- a/src/MNH/compute_entr_detr.f90	2020-12-17 13:11:09.000000000 +0000
++++ b/src/MNH/compute_entr_detr.f90	2021-02-24 09:30:12.461047000 +0000
+@@ -134,6 +134,8 @@
+ 
+ USE MODE_THERMO
+ 
++USE MODD_PARAMETERS, ONLY: XUNDEF
++
+ IMPLICIT NONE
+ !
+ !                         
+@@ -234,6 +236,10 @@
+   ZMIXTHL(:)=0.1
+   ZMIXRT(:)=0.1
+ 
++  !Initialize PPART_DRY everywhere to prevent access to non-initialized values
++  ! (intent(out) arrays have undefined values at subroutine entry)
++  PPART_DRY(:) = XUNDEF
++  
+ !                1.4 Estimation of PPART_DRY
+   DO JLOOP=1,SIZE(OTEST)
+     IF(OTEST(JLOOP) .AND. OTESTLCL(JLOOP)) THEN
