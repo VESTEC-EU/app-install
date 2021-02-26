@@ -8,7 +8,8 @@ set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
-source_full_path=$PWD/$source_dir_name
+cmake_dir_name=${cmake_dir_name:-${source_dir_name}}
+cmake_full_path=$PWD/$cmake_dir_name
 
 mkdir -p $build_dir_name
 pushd $build_dir_name
@@ -24,7 +25,7 @@ for vname in "${!cmake_vars[@]}"; do
 done
 
 # Build command line
-cmake_cmd="cmake $source_full_path"
+cmake_cmd="cmake $cmake_full_path"
 for vname in "${!vars[@]}"; do
     cmake_cmd="$cmake_cmd -D${vname}=${vars[$vname]}"
 done
