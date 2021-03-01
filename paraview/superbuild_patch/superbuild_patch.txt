@@ -1,0 +1,10 @@
+
+The superbuild will fail giving the following error:
+clang-10: error: unsupported option '--unresolved-symbols=ignore-in-shared-libs'
+
+To solve this you need to patch the following file: 
+paraview-build/superbuild/paraview/src/VTK/Utilities/Python/CMakeLists.txt
+
+From the root folder of your repository simply call the following command:
+cp app-install/paraview/superbuild_patch/CMakeLists.txt paraview-build/superbuild/paraview/src/VTK/Utilities/Python/
+
