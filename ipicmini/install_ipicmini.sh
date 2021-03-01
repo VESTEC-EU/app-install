@@ -16,7 +16,7 @@ if [ ! -d ipicmini-build ]; then
 fi
 
 cd ipicmini-build
-cmake -DParaView_DIR=$root/paraview-build/install/lib/cmake/paraview-5.8\
+cmake -DParaView_DIR=$root/paraview-build/install/lib/cmake/paraview-5.9\
       -DUSE_CATALYST=ON \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX=$root/install/ipicmini/ \
