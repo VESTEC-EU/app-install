@@ -40,7 +40,7 @@ echo Compiling sampling libraries
 echo ...
 
 cd sampling-build
-cmake -DParaView_DIR=$root/paraview-build/install/lib/cmake/paraview-5.8\
+cmake -DParaView_DIR=$root/paraview-build/install/lib/cmake/paraview-5.9\
       -DCMAKE_INSTALL_PREFIX=$root/install/sampling \
       -DUSE_CATALYST=ON \
       -DEigen3_DIR=$root/install/eigen\
