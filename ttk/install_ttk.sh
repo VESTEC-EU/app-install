@@ -23,7 +23,7 @@ fi
 cd ttk-build
 cmake -DParaView_DIR=$root/paraview-build/install/lib/cmake/paraview-5.9\
       -DTTK_ENABLE_KAMIKAZE=ON \
-      -DTTK_INSTALL_PLUGIN_DIR=$root/install/paraview-5.9/lib/paraview-5.9/plugins \
+      -DTTK_INSTALL_PLUGIN_DIR=$root/install/paraview-5.9.0/lib/paraview-5.9/plugins \
       -DTTK_BUILD_STANDALONE_APPS=OFF \
       -DVTK_MODULE_ENABLE_ttkCinemaImaging=DONT_WANT \
       -DVTK_MODULE_ENABLE_ttkUserInterfaceBase=DONT_WANT \
