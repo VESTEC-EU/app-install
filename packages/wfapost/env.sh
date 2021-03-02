@@ -4,8 +4,11 @@ if [ -z "$INSTALLER_WFAPOST_ENV_SH" ]; then
     . $installer_wfapost_dir/../../env.sh
 
     name=wfapost
-    version=main
+    version=1.0.0
     visibility=private
+
+    # Tags are vX.Y.Z
+    git_ref=v$version
 
     wfapost_gdal_version=3.1.0
 
