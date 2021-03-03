@@ -11,9 +11,10 @@ if [ -z "$INSTALLER_FIREAPP_ENV_SH" ]; then
     source_dir_name=fireapp
     build_dir_name=build-$version
 
+    declare -A cmake_vars
+
     installer_init
 
-    declare -A cmake_vars
     cmake_vars[BUILD_SHARED_LIBS]=ON
     cmake_vars[FIREAPP_CONAN]=ON
     cmake_vars[FIREAPP_CONAN_GDAL]=OFF
