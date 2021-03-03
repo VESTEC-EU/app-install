@@ -12,7 +12,7 @@ if [ -z "$INSTALLER_GDAL_ENV_SH" ]; then
     installer_init
 
     configure_other_args="--with-proj=$PROJ_DIR --with-pg=no --with-webp=no --with-crypto=no --with-curl=no --with-hdf5=$HDF5_DIR --with-jasper=no LDFLAGS=-Wl,-rpath=$PROJ_DIR/lib64"
-    if [ ! -z "$SQLITE_DIR" ]; then
+    if [ ! -z "${SQLITE_DIR:-}" ]; then
 	configure_other_args="$configure_other_args --with-sqlite3=$SQLITE_DIR --with-proj-extra-lib-for-test=-L$SQLITE_DIR/lib"
     fi
 fi
