@@ -10,9 +10,10 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 if [ -d wfapost ]; then
     pushd wfapost
     git fetch
-    git checkout $git_ref
 else
     git clone git@github.com:VESTEC-EU/wfapost.git
-    git checkout $version
+    pushd wfapost
 fi
+git checkout $git_ref
+popd
 
