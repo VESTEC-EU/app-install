@@ -35,6 +35,3 @@ cmake -DSUPERBUILD_PROJECT_PARALLELISM=8 \
 
 make
 make install
-
-# since the superbuild final install will fail, we need to manually copy the lib folder in a way that ipicmini can see it
-cp -r paraview-build/install/lib/* install/ipicmini/lib/
