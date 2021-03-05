@@ -1,6 +1,6 @@
 # VESTEC application install scripts
 
-These work on ARCHER2 for now. They should be simple enough to adapt to other machines by providing a new set of platform-specific
+These modules are compatible with ARCHER2 for now. They should be simple enough to adapt to other machines by providing a new set of platform-specific
 config files. In ARCHER2 the defaults environment `cpe-cray` is used, and the only modules added are `cmake` and `boost`.
 
 ## How to install
@@ -16,6 +16,7 @@ First, clone the repository
 `git clone -b feature/dlr-sampling git@github.com:VESTEC-EU/app-install.git`
 
 After cloning the repository, simply call sequentially the following commands:
+- `source app-install/modules.sh`
 - `app-install/paraview/install_pv.sh`
 - `app-install/sampling/install_sampling.sh`
 - `app-install/ipicmini/install_ipicmini.sh`
@@ -26,7 +27,7 @@ The first execution of the Paraview superbuild script, will raise the following 
 
 `clang-10: error: unsupported option '--unresolved-symbols=ignore-in-shared-libs'`
 
-Since the fix needs to be applied to file that is downloaded by the script itself, to solve this you need to manually patch the following file: 
+Since the fix needs to be applied to a file that is downloaded by the superbuild script itself, to solve this you need to manually patch the following file: 
 
 `paraview-build/superbuild/paraview/src/VTK/Utilities/Python/CMakeLists.txt`
 
@@ -36,8 +37,14 @@ From the root folder of your repository simply call the following command:
 
 ## Known issue 2 - Paraview superbuild fails to link properly all libraries
 
-After the patch the superbuild completes the compilation process for all enabled modules, but it lastly fails to link properly all libraries.
-Then, in the `install` does not contains all - `.so` files. There is not a working workaround (yet), but for profiling purposes we are copying all `.so` files from `paraview-build/install/lib/` to `install/ipicmini/lib/`. We added this `cp` command in `app-install/paraview/install_pv.sh`.
+After the patch the superbuild completes the compilation process for all enabled modules, but it lastly fails to link properly all libraries, raising the following error:
+
+`RuntimeError: Unable to find the libunwind.so.1 library`
+
+Since `libunwind` is installed correctly in Archer2, but as `libunwind.so.8`, we need to create symlink to "fix" the version number.
+From the root folder of your repository simply call the following command:
+
+`ln -s /usr/lib64/libunwind.so.8 $PWD/paraview-build/install/lib/libunwind.so.1`
 
 ## Open issue (to do)
 Only the above mentioned modules are currently compatible with ARCHER2. 
