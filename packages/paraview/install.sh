@@ -7,10 +7,7 @@ set -e
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
-pushd $build_dir_name
-# do not use make install so we also access the sdk
-cp -rfv install/ $prefix
-popd
+# Installed by superbuild
 
 # Ensure that if this is the first version installed, others can also
 # write the package dir
