@@ -1,11 +1,17 @@
 if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
+    if git rev-parse --is-inside-work-tree > /dev/null 2> /dev/null; then
+	echo "Paraview superbuild will fail if run from inside a git repo."
+	echo "Please use a build directory outwith a git repo."
+	exit 1
+    fi
+
     INSTALLER_PARAVIEW_ENV_SH=1
     installer_paraview_dir=$(readlink -f $(dirname $BASH_SOURCE))
     . $installer_paraview_dir/../../env.sh
 
     visibility=public
     name=paraview
-    version=5.9.0
+    version=5.9.0 
     version_tag=v${version}
 
     source_dir_name=paraview-$version_tag
@@ -22,5 +28,8 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     cmake_vars[ENABLE_protobuf]=ON
     cmake_vars[ENABLE_python]=ON
     cmake_vars[ENABLE_python3]=ON
-    cmake_vars[USE_SYSTEM_python3]=OFF
+    cmake_vars[USE_SYSTEM_python3]=ON
+    cmake_vars[USE_SYSTEM_boost]=ON
+    # PV superbuild uses this instead of CMAKE_INSTALL_PREFIX
+    cmake_vars[superbuild_install_location]=$prefix
 fi
