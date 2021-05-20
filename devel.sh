@@ -20,9 +20,10 @@ function pkgshell() {
 
     tmp_rc=$(mktemp)
     cat > $tmp_rc <<EOF
-    . $pkg_env
-    set +e
-    set +u
+thisdir=$pkg_dir
+. $pkg_env
+set +e
+set +u
 EOF
     bash --rcfile $tmp_rc
     ret=$?
@@ -30,3 +31,15 @@ EOF
     return $ret
 }
 
+# Just echo the standard preamble to a build step
+function preamble () {
+    cat <<"EOF"
+#!/bin/bash
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+    echo "Don't source me"
+    return 1
+fi
+thisdir=$(readlink -f $(dirname $BASH_SOURCE))
+. $thisdir/env.sh
+EOF
+}
