@@ -104,4 +104,12 @@ if [ -z "$INSTALLER_ENV_SH" ]; then
 	fi
     }
 
+    # Make a directory and chmod g+w, if it doesn't exist.
+    function mkdir_gw {
+	if [ ! -d $1 ]; then
+	    mkdir $1
+	    chmod g+w $1
+	fi
+    }
+
 fi

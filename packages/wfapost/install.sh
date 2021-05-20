@@ -7,6 +7,10 @@ fi
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
+# Ensure that if this is the first version installed, others can also
+# write the package dir
+mkdir_gw $app_dir/$name
+
 if [ ! -d $prefix/bin/ ]; then 
     python3 -m venv --system-site-packages $prefix
 fi
@@ -19,8 +23,5 @@ pip3 install --global-option=build_ext --global-option=-R$GDAL_DIR/lib GDAL==$wf
 pushd wfapost
 pip3 install -r requirements.txt .
 
-# Ensure that if this is the first version installed, others can also
-# write the package dir
-chmod g+w $app_dir/$name
-# Then the same, recursively, for the whole prefix tree
+# Make the whole prefix tree group writable
 chmod -R g+w $prefix

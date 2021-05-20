@@ -10,6 +10,10 @@ set -a
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 . $thisdir/env.sh
 
+# Ensure that if this is the first version installed, others can also
+# write the package dir
+mkdir_gw $app_dir/$name
+
 python3 -m venv --system-site-packages $prefix
 . $prefix/bin/activate
 
@@ -21,8 +25,5 @@ fi
 
 pip3 install -r $reqs_file
 
-# Ensure that if this is the first version installed, others can also
-# write the package dir
-chmod g+w $app_dir/$name
-# Then the same, recursively, for the whole prefix tree
+# Make the whole prefix tree group writable
 chmod -R g+w $prefix

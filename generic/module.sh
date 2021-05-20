@@ -20,8 +20,9 @@ else
     exit 1
 fi
 
-mkdir -p $mod_dir/$name
+mkdir_gw $mod_dir/$name
 
-cat $template | envsubst > $mod_dir/$name/$version
+mod_file=$mod_dir/$name/$version
+cat $template | envsubst > $mod_file
 
-chmod -R g+w $mod_dir/$name
+chmod g+w $mod_file

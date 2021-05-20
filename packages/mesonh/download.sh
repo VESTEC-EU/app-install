@@ -11,9 +11,14 @@ if [ ! -d $prefix ]; then
     if [ ! -f MNH-V${version_dashed}.tar.gz ]; then
 	wget http://mesonh.aero.obs-mip.fr/mesonh/dir_open/dir_MESONH/MNH-V${version_dashed}.tar.gz
     fi
-    mkdir -p $app_dir/mesonh
+    if [ ! -d $app_dir/mesonh ]; then
+	mkdir $app_dir/mesonh
+	chmod g+w $app_dir/mesonh
+    fi
+
     tar -xzf MNH-V${version_dashed}.tar.gz
-    mv MNH-V${version_dashed} $app_dir/mesonh/$version
+    mv MNH-V${version_dashed} $prefix
+
     pushd $prefix
     patch -p1 < $thisdir/config.patch
     patch -p1 < $thisdir/gfortran-rules.patch

@@ -16,3 +16,8 @@ if [ -d $source_dir_name ]; then
 else
     git clone -b $version_tag --recursive https://gitlab.kitware.com/paraview/paraview-superbuild $source_dir_name
 fi
+
+# Ensure that if this is the first version installed, others can also
+# write the package dir. (Doing this here as superbuild does the
+# install during build phase, which is otherwise generic).
+mkdir_gw $app_dir/$name

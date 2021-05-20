@@ -14,12 +14,10 @@ pushd $bin_dir
 
 prog_list="MESONH LATLON_TO_XY PREP_IDEAL_CASE PREP_REAL_CASE PREP_PGD PREP_NEST_PGD SPAWNING DIAG PREP_SURFEX ZOOM_PGD SPECTRE MNH2LPDM LFI2CDF"
 for prog in $prog_list; do
+    rm -f $prog
     ln -s $prefix/src/dir_obj$XYZ/MASTER/$prog
 done
 
-# Ensure that if this is the first version installed, others can also
-# write the package dir
-chmod g+w $app_dir/$name
-# Then the same, recursively, for the whole prefix tree
+# Make the whole prefix tree group writable
 chmod -R g+w $prefix
 popd

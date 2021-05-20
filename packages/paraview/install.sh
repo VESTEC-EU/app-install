@@ -9,8 +9,5 @@ thisdir=$(readlink -f $(dirname $BASH_SOURCE))
 
 # Installed by superbuild
 
-# Ensure that if this is the first version installed, others can also
-# write the package dir
-chmod g+w $app_dir/$name
-# Then the same, recursively, for the whole prefix tree
+# Make the whole prefix tree group writable
 chmod -R g+w $prefix

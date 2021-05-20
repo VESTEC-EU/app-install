@@ -20,8 +20,12 @@ else
     exit 1
 fi
 
-mkdir -p $mod_dir/$name
+if [ ! -d $mod_dir/$name ]; then
+    mkdir $mod_dir/$name
+    chmod g+w $mod_dir/$name
+fi
 
-cat $template | envsubst > $mod_dir/$name/$version-${ARCH}-${OPTLEVEL}
+mod_file=$mod_dir/$name/$version-${ARCH}-${OPTLEVEL}
+cat $template | envsubst > $mod_file
 
-chmod -R g+w $mod_dir/$name
+chmod g+w $mod_file
