@@ -7,3 +7,5 @@ if { ![is-loaded intel-mpi-19] } {
 
 setenv iPIC3D_DIR "${prefix}"
 prepend-path PATH "${prefix}/bin"
+
+setenv iPIC3D_DATA "${prefix}/share/ipic3d/inputfiles"
