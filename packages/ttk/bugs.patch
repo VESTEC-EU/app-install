@@ -1,0 +1,49 @@
+diff --git a/core/base/ftmTree/FTMTree_MT_Template.h b/core/base/ftmTree/FTMTree_MT_Template.h
+index 0788a66a..007db2b6 100644
+--- a/core/base/ftmTree/FTMTree_MT_Template.h
++++ b/core/base/ftmTree/FTMTree_MT_Template.h
+@@ -382,12 +382,16 @@ namespace ttk {
+ 
+       // is last
+       valence oldVal;
++      // Some versions of GOMP do not correctly recognise the RHS of
++      // the assignment as identical in the block below. Work around
++      // with this alias.
++      valence& tmp = (*mt_data_.valences)[currentState.vertex];
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp atomic capture
+ #endif
+       {
+-        oldVal = (*mt_data_.valences)[currentState.vertex];
+-        (*mt_data_.valences)[currentState.vertex] -= decr;
++        oldVal = tmp;
++        tmp -= decr;
+       }
+       if(oldVal == decr) {
+         isLast = true;
+diff --git a/core/vtk/ttkPointDataSelector/ttkPointDataSelector.cpp b/core/vtk/ttkPointDataSelector/ttkPointDataSelector.cpp
+index c29b3be1..eba87562 100644
+--- a/core/vtk/ttkPointDataSelector/ttkPointDataSelector.cpp
++++ b/core/vtk/ttkPointDataSelector/ttkPointDataSelector.cpp
+@@ -92,7 +92,7 @@ int ttkPointDataSelector::RequestData(vtkInformation *request,
+         continue;
+       }
+       // check bounds in the range
+-      ptrdiff_t pos
++      std::ptrdiff_t pos
+         = std::find(AvailableFields.begin(), AvailableFields.end(), scalar)
+           - AvailableFields.begin();
+       if(pos < RangeId[0] || pos > RangeId[1]) {
+diff --git a/core/vtk/ttkTableDataSelector/ttkTableDataSelector.cpp b/core/vtk/ttkTableDataSelector/ttkTableDataSelector.cpp
+index 15d680fe..b72556fd 100644
+--- a/core/vtk/ttkTableDataSelector/ttkTableDataSelector.cpp
++++ b/core/vtk/ttkTableDataSelector/ttkTableDataSelector.cpp
+@@ -75,7 +75,7 @@ int ttkTableDataSelector::RequestData(vtkInformation *request,
+       continue;
+     }
+     // check bounds in the range
+-    ptrdiff_t pos = find(AvailableCols.begin(), AvailableCols.end(), col)
++    std::ptrdiff_t pos = find(AvailableCols.begin(), AvailableCols.end(), col)
+                     - AvailableCols.begin();
+     if(pos < RangeId[0] || pos > RangeId[1]) {
+       continue;
