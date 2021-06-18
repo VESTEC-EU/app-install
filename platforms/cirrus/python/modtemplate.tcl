@@ -7,3 +7,4 @@ if {![is-loaded libffi]} {
 }
 
 prepend-path PATH "${prefix}/bin"
+setenv PIP_REQUIRE_VIRTUALENV "true"

@@ -12,3 +12,4 @@ if {![is-loaded sqlite]} {
 }
 
 prepend-path PATH "${prefix}/bin"
+setenv PIP_REQUIRE_VIRTUALENV "true"
