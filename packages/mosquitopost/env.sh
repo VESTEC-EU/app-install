@@ -5,7 +5,7 @@ if [ -z "$INSTALLER_MOSQUITOPOST_ENV_SH" ]; then
 
     visibility=private
     name=mosquitopost
-    version=py
+    version=0.2.0
 
     source_dir_name=use-case-mosquito
 

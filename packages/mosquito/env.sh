@@ -6,9 +6,10 @@ if [ -z "$INSTALLER_MOSQUITO_ENV_SH" ]; then
     # Closed source, keep VESTEC only
     visibility=private
     name=mosquito
-    version=0.1.0
+    version=0.2.0
 
     source_dir_name=use-case-mosquito
+    cmake_dir_name=${source_dir_name}/code_mosquito
     build_dir_name=build-$version
 
     declare -A cmake_vars
