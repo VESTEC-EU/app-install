@@ -13,6 +13,7 @@ if [ -z "$INSTALLER_IPIC3D_ENV_SH" ]; then
 
     declare -A cmake_vars
     cmake_vars[USE_CATALYST]=ON
+    cmake_vars[USE_HDF5]=ON
     cmake_vars[BUILD_SHARED_LIBS]=ON
     # Build is broken with -DNDEBUG
     cmake_vars[CMAKE_CXX_FLAGS_RELEASE]=-O3
