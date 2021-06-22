@@ -36,6 +36,7 @@ if [ -z "$INSTALLER_ENV_SH" ]; then
 
     # Idempotent version of module use
     function mod_use_idem {
+	local mod_dir
 	for mod_dir in "$@"; do
 	    if [[ ! "$MODULEPATH" =~ ".*$mod_dir.*" ]]; then
 		module use $mod_dir
