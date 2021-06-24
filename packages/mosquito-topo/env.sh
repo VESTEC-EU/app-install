@@ -5,7 +5,7 @@ if [ -z "$INSTALLER_MOSQUITO_TOPO_ENV_SH" ]; then
 
     visibility=private
     name=mosquito-topo
-    version=0.1.1
+    version=0.2.0
 
     source_dir_name=mosquito-topological-processing
     my_gdal_version=3.1.0

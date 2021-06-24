@@ -19,11 +19,6 @@ fi
 
 . $prefix/bin/activate
 
-# Must install numpy first, to build gdal_array optional package
-pip3 install numpy
-# GDAL extensions must properly link agains libgdal.so
-pip3 install --global-option=build_ext --global-option=-R$GDAL_DIR/lib GDAL==$my_gdal_version
-
 # Rest as normal
 pushd $source_dir_name
 pip3 install .
