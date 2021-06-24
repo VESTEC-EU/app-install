@@ -23,4 +23,11 @@ if [ -z "$INSTALLER_TTK_ENV_SH" ]; then
 	# This only possible after install; only needed for module
 	pvpython_sitepackage_dir=$($prefix/bin/pvpython $thisdir/get_site_packages.py)
     fi
+    if [ -f $prefix/bin/activate ]; then
+	python_sitepackage_dir=$(
+	    ( . /lustre/home/shared/dc118/sw/ttk/0.9.9/bin/activate;
+	      python -c 'import sysconfig; print(sysconfig.get_path("platlib"))'
+	    )
+	)
+    fi
 fi
