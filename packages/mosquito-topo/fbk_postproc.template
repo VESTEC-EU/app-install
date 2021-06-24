@@ -1,3 +1,0 @@
-#!/bin/bash
-$TTK_DIR/bin/pvpython $venv_sitepackages/fbk_postproc.py "$@"
-

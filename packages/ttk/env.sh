@@ -18,4 +18,9 @@ if [ -z "$INSTALLER_TTK_ENV_SH" ]; then
     declare -A cmake_vars
 
     installer_init
+
+    if [ -x $prefix/bin/pvpython ]; then
+	# This only possible after install; only needed for module
+	pvpython_sitepackage_dir=$($prefix/bin/pvpython $thisdir/get_site_packages.py)
+    fi
 fi
