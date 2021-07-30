@@ -28,6 +28,7 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     cmake_vars[ENABLE_protobuf]=ON
     cmake_vars[ENABLE_python]=ON
     cmake_vars[ENABLE_python3]=ON
+    cmake_vars[ENABLE_gdal]=ON
     cmake_vars[USE_SYSTEM_python3]=ON
     cmake_vars[USE_SYSTEM_boost]=ON
     # PV superbuild uses this instead of CMAKE_INSTALL_PREFIX
