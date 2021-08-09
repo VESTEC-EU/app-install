@@ -11,8 +11,8 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
 
     visibility=public
     name=paraview
-    version=5.9.0 
-    version_tag=v${version}
+    version=git
+    version_tag=master
 
     source_dir_name=paraview-$version_tag
     build_dir_name=build-$version_tag
@@ -22,12 +22,16 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     declare -A cmake_vars
     cmake_vars[BUILD_TESTING]=OFF
     cmake_vars[PARAVIEW_BUILD_SHARED_LIBS]=ON
-    cmake_vars[PARAVIEW_BUILD_EDITION]=CATALYST_RENDERING
+    cmake_vars[PARAVIEW_BUILD_EDITION]=CATALYST
+    cmake_vars[PARAVIEW_ENABLE_MOTIONFX]=OFF # temp fix: https://gitlab.kitware.com/paraview/paraview-superbuild/-/issues/189
     cmake_vars[paraview_SOURCE_SELECTION]=$version
     cmake_vars[ENABLE_boost]=ON
     cmake_vars[ENABLE_protobuf]=ON
     cmake_vars[ENABLE_python]=ON
     cmake_vars[ENABLE_python3]=ON
+    cmake_vars[ENABLE_numpy]=ON
+    cmake_vars[ENABLE_ttk]=ON
+    cmake_vars[ENABLE_zfp]=ON
     cmake_vars[USE_SYSTEM_python3]=ON
     cmake_vars[USE_SYSTEM_boost]=ON
     # PV superbuild uses this instead of CMAKE_INSTALL_PREFIX
