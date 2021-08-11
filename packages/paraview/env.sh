@@ -36,4 +36,6 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     cmake_vars[USE_SYSTEM_boost]=ON
     # PV superbuild uses this instead of CMAKE_INSTALL_PREFIX
     cmake_vars[superbuild_install_location]=$prefix
+    # Also doesn't use the standard -j flag for parallelism
+    cmake_vars[SUPERBUILD_PROJECT_PARALLELISM]=$make_parallelism
 fi
