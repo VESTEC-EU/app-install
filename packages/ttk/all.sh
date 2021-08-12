@@ -6,6 +6,6 @@ fi
 set -e
 
 thisdir=$(readlink -f $(dirname $BASH_SOURCE))
-for step in download patch "pv/patch" "pv/configure" "pv/build" "pv/install" configure build install module; do
+for step in download patch configure build install module; do
     $thisdir/$step.sh
 done

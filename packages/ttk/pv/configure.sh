@@ -1,1 +1,0 @@
-../../../generic/cmake/configure.sh
