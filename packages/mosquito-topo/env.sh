@@ -12,4 +12,5 @@ if [ -z "$INSTALLER_MOSQUITO_TOPO_ENV_SH" ]; then
 
     download_git_repo="git@github.com:VESTEC-EU/mosquito-topological-processing.git"
     installer_init
+    python_layer_venv=$(prefix=$prefix python3 $installer_dir/generic/pip/module_venv_paths.py)
 fi
