@@ -18,9 +18,10 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     source_dir_name=paraview-$version_tag
     build_dir_name=build-$version_tag
 
+    declare -A cmake_vars
+
     installer_init
 
-    declare -A cmake_vars
     cmake_vars[BUILD_TESTING]=OFF
     cmake_vars[PARAVIEW_BUILD_SHARED_LIBS]=ON
     cmake_vars[PARAVIEW_BUILD_EDITION]=CATALYST_RENDERING
@@ -39,4 +40,6 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     cmake_vars[superbuild_install_location]=$prefix
     # Also doesn't use the standard -j flag for parallelism
     cmake_vars[SUPERBUILD_PROJECT_PARALLELISM]=$make_parallelism
+
+    python_layer_env=$(prefix=$prefix python3 $installer_dir/generic/pip/module_venv_paths.py)
 fi

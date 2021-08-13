@@ -13,4 +13,4 @@ setenv TTK_DIR "${prefix}"
 prepend-path PATH "${prefix}/bin"
 
 prepend-path PV_PLUGIN_PATH "${prefix}/bin/plugins"
-
+prepend-path PYTHONPATH "${prefix}/lib/python3.8/site-packages"
