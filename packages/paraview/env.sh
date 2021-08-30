@@ -1,21 +1,21 @@
 if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     if git rev-parse --is-inside-work-tree > /dev/null 2> /dev/null; then
-	echo "Paraview superbuild will fail if run from inside a git repo."
-	echo "Please use a build directory outwith a git repo."
-	exit 1
+      echo "Paraview superbuild will fail if run from inside a git repo."
+      echo "Please use a build directory outwith a git repo."
+      exit 1
     fi
 
     INSTALLER_PARAVIEW_ENV_SH=1
     installer_paraview_dir=$(readlink -f $(dirname $BASH_SOURCE))
     . $installer_paraview_dir/../../env.sh
 
-    visibility=public
+    visibility=private
     name=paraview
     version=git
     version_tag=master
 
     source_dir_name=paraview-$version_tag
-    build_dir_name=build-$version_tag
+    build_dir_name=build-paraview-$version_tag
 
     installer_init
 
