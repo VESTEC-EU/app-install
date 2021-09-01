@@ -7,5 +7,5 @@ module load python/3.8.5
 module load ttk/0.9.9
 
 setenv MOSQUITO_TOPO_DIR "${prefix}"
-setenv VIRTUAL_ENV "${prefix}"
+${python_layer_venv}
 prepend-path PATH "${prefix}/bin"

@@ -17,15 +17,19 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     source_dir_name=paraview-$version_tag
     build_dir_name=build-paraview-$version_tag
 
+    declare -A cmake_vars
+
     installer_init
 
-    declare -A cmake_vars
     cmake_vars[BUILD_TESTING]=OFF
     cmake_vars[PARAVIEW_BUILD_SHARED_LIBS]=ON
     cmake_vars[PARAVIEW_BUILD_EDITION]=CATALYST
     cmake_vars[PARAVIEW_ENABLE_MOTIONFX]=OFF # temp fix: https://gitlab.kitware.com/paraview/paraview-superbuild/-/issues/189
     cmake_vars[paraview_SOURCE_SELECTION]=$version
     cmake_vars[ENABLE_boost]=ON
+    cmake_vars[USE_SYSTEM_boost]=ON
+    cmake_vars[ENABLE_numpy]=ON
+    cmake_vars[USE_SYSTEM_numpy]=ON
     cmake_vars[ENABLE_protobuf]=ON
     cmake_vars[ENABLE_python]=ON
     cmake_vars[ENABLE_python3]=ON
@@ -33,9 +37,12 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     cmake_vars[ENABLE_ttk]=ON
     cmake_vars[ENABLE_zfp]=ON
     cmake_vars[USE_SYSTEM_python3]=ON
-    cmake_vars[USE_SYSTEM_boost]=ON
+    cmake_vars[ENABLE_gdal]=ON
+    cmake_vars[USE_SYSTEM_zlib]=ON
     # PV superbuild uses this instead of CMAKE_INSTALL_PREFIX
     cmake_vars[superbuild_install_location]=$prefix
     # Also doesn't use the standard -j flag for parallelism
     cmake_vars[SUPERBUILD_PROJECT_PARALLELISM]=$make_parallelism
+
+    python_layer_env=$(prefix=$prefix python3 $installer_dir/generic/pip/module_venv_paths.py)
 fi

@@ -5,7 +5,7 @@ if [ -z "$INSTALLER_MOSQUITOPOST_ENV_SH" ]; then
 
     visibility=private
     name=mosquitopost
-    version=0.2.1
+    version=0.3.0
 
     source_dir_name=use-case-mosquito
 
