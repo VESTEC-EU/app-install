@@ -12,5 +12,5 @@ if [ -d fireapp ]; then
     git pull --ff-only origin $version
     popd
 else
-    git clone -b $version https://git.firesponse.es/external/vestec.git fireapp
+    git clone -b $version https://code.tecnosylva.es/sharing/vestec.git fireapp
 fi
