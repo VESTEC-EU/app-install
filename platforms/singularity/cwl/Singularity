@@ -1,0 +1,11 @@
+Bootstrap: docker
+From: python:3.8.5-slim
+
+%files
+    ../../.. /builder
+
+%post
+    /builder/packages/cwl/all.sh
+
+%runscript
+    exec cwltool "$@"

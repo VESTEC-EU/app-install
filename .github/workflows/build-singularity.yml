@@ -1,0 +1,30 @@
+name: Build Singularity images
+
+on: push
+
+env:
+  singularity_version: 3.8.3
+
+jobs:
+  cwlrunner:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Singularity
+        uses: eWaterCycle/setup-singularity@v7
+        with:
+          singularity-version: ${{ env.singularity_version }}
+
+      - name: Activate Singularity platform for installer system
+        run: ln -s platforms/singularity/config.sh
+
+      - name: Build a thing
+        run: platforms/singularity/build_image.sh cwl
+
+      - name: Store thing
+        uses: actions/upload-artifact@v2
+        with:
+          name: cwl.sif
+          path: cwl.sif
