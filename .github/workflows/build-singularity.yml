@@ -17,6 +17,10 @@ jobs:
         with:
           singularity-version: ${{ env.singularity_version }}
 
+      - run: which singularity
+      - run: echo $PATH
+      - run: ls $SINGULARITY_ROOT/bin
+
       - name: Activate Singularity platform for installer system
         run: ln -s platforms/singularity/config.sh
 
