@@ -9,4 +9,4 @@ ${python_layer_venv}
 
 setenv PARAVIEW_DIR "${prefix}"
 prepend-path PATH "${prefix}/bin"
-setenv PARAVIEW_VERSION "${version}"
+setenv PARAVIEW_VERSION "${version_bare}"

@@ -11,8 +11,9 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
 
     visibility=public
     name=paraview
-    version=5.9.0 
-    version_tag=v${version}
+    version_bare=5.9.0
+    version=mpi-$version_bare
+    version_tag=v5.9.0
     numpy_version=1.19.2
 
     source_dir_name=paraview-$version_tag
@@ -25,7 +26,7 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     cmake_vars[BUILD_TESTING]=OFF
     cmake_vars[PARAVIEW_BUILD_SHARED_LIBS]=ON
     cmake_vars[PARAVIEW_BUILD_EDITION]=CATALYST_RENDERING
-    cmake_vars[paraview_SOURCE_SELECTION]=$version
+    cmake_vars[paraview_SOURCE_SELECTION]=$version_bare
     cmake_vars[ENABLE_boost]=ON
     cmake_vars[USE_SYSTEM_boost]=ON
     cmake_vars[ENABLE_numpy]=ON
@@ -36,6 +37,9 @@ if [ -z "$INSTALLER_PARAVIEW_ENV_SH" ]; then
     cmake_vars[USE_SYSTEM_python3]=ON
     cmake_vars[ENABLE_gdal]=ON
     cmake_vars[USE_SYSTEM_zlib]=ON
+    cmake_vars[ENABLE_mpi]=ON
+    cmake_vars[USE_SYSTEM_mpi]=ON
+
     # PV superbuild uses this instead of CMAKE_INSTALL_PREFIX
     cmake_vars[superbuild_install_location]=$prefix
     # Also doesn't use the standard -j flag for parallelism
