@@ -1,1 +1,1 @@
-module load gcc/10.1.0
+module load gcc/10.2.0

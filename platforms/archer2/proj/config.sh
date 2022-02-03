@@ -1,5 +1,5 @@
-module load gcc/10.1.0
-module load cmake/3.18.4
+module load gcc/10.2.0
+module load cmake/3.21.3
 module load sqlite/3.34.1
 
 cmake_vars[CMAKE_C_COMPILER]=`which gcc`
